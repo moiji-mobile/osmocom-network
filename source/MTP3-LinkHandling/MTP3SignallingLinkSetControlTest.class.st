@@ -27,6 +27,12 @@ MTP3SignallingLinkSetControlTest >> setUp [
 ]
 
 { #category : #'as yet unclassified' }
+MTP3SignallingLinkSetControlTest >> tearDown [
+	linkSet stop.
+	link sltc stop.
+]
+
+{ #category : #'as yet unclassified' }
 MTP3SignallingLinkSetControlTest >> testCreation [
 	"Just... to check if nothing "
 	linkSet start.

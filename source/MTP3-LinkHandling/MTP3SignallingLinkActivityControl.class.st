@@ -320,6 +320,8 @@ MTP3SignallingLinkActivityControl >> stopLink [
 	link mtpLevel3Boundary stop.
 	link lsld deactivateLink.
 	link lsla deactivateLink.
+	"This is not in the diagrams. It might not be right."
+	link sltc stop.
 	link linkSet llsc linkInactive: link.
 	
 	activiationRestorationUnsuccessful

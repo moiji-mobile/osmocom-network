@@ -45,8 +45,6 @@ MTP3SignallingLinkSetControl >> anyLinkActive [
 { #category : #'Q.704' }
 MTP3SignallingLinkSetControl >> deactivateLinkset [
 	"MGMT -> LLSC"
-	self isActive ifFalse: [^self].
-	
 	linkSet links do: [:each |
 		each lsac deactivateLink].
 

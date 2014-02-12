@@ -32,6 +32,7 @@ MTP3SignallingLinkActivityControlTest >> setUp [
 { #category : #'as yet unclassified' }
 MTP3SignallingLinkActivityControlTest >> tearDown [
 	link sltc stop.
+	linkSet stop.
 ]
 
 { #category : #'as yet unclassified' }

@@ -19,8 +19,8 @@ Class {
 
 { #category : #support }
 MTP3SignallingLinkTestControl >> cancelTimers [
-	t1 ifNotNil: [t1 cancel].
-	t2 ifNotNil: [t2 cancel].
+	t1 ifNotNil: [t1 cancel. t1 := nil].
+	t2 ifNotNil: [t2 cancel. t2 := nil].
 ]
 
 { #category : #private }
