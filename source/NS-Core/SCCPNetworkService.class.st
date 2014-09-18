@@ -16,16 +16,6 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-SCCPNetworkService class >> ignoredMethods [
-	^ #()
-]
-
-{ #category : #'as yet unclassified' }
-SCCPNetworkService class >> isTcapComponent [ 
-	^ true
-]
-
-{ #category : #'as yet unclassified' }
 SCCPNetworkService class >> layer [
 	^ self
 ]
