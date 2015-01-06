@@ -59,11 +59,24 @@ BERTEncoder class >> encodeFalseOn: aWriteStream [
 
 { #category : #'as yet unclassified' }
 BERTEncoder class >> encodeInteger: anInteger on: aWriteStream [ 
+	| n num |
 	((anInteger > 0) & (anInteger < 256))
 		ifTrue: [^self encodeSmallInteger: anInteger on: aWriteStream].
 	((anInteger > -2147483648) & (anInteger < 2147483647))
 		ifTrue: [^self encodeBigInteger: anInteger on: aWriteStream].
-	self error: 'Can''t encode Integer'.
+
+	"TODO: Refactor once we add the big num ext generation"
+	n := anInteger digitLength.
+	num := anInteger abs.
+	n > 256 ifTrue: [^self error: 'Can''t encode integer'].
+	aWriteStream
+		nextPut: 110;
+		nextPut: n;
+		nextPut: ((anInteger >= 0) ifTrue: [0] ifFalse: [1]).
+	[num > 0] whileTrue: [
+		aWriteStream nextPut: num \\ 256.
+		num := num // 256.
+	]
 ]
 
 { #category : #'as yet unclassified' }

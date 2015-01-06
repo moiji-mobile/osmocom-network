@@ -13,7 +13,7 @@ BERTEncoderTest >> encode: input equals: expectedResult [
 
 { #category : #'as yet unclassified' }
 BERTEncoderTest >> expectedFailures [
-	^super expectedFailures, #(#testEncodeRegex #testEncodeBigInteger #testEncodeFloat #testEncodeTime)
+	^super expectedFailures, #(#testEncodeRegex #testEncodeFloat #testEncodeTime)
 ]
 
 { #category : #'as yet unclassified' }
@@ -23,8 +23,9 @@ BERTEncoderTest >> testEncodeAtom [
 
 { #category : #'as yet unclassified' }
 BERTEncoderTest >> testEncodeBigInteger [
+	self encode: 4206488503 equals: #[131 110 4 0 183 235 185 250].
 	self encode: 600000000000 equals: #[131 110 5 0 0 112 201 178 139].
-	self encode: -600000000000 equals: #[131 110 5 0 0 112 201 178 139].
+	self encode: -600000000000 equals: #[131 110 5 1 0 112 201 178 139].
 ]
 
 { #category : #'as yet unclassified' }

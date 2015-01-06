@@ -93,6 +93,22 @@ BERTDecoder class >> decodeNil: aReadStream [
 ]
 
 { #category : #'as yet unclassified' }
+BERTDecoder class >> decodeSmallBigInteger: aReadStream [ 
+	| len sign number B |
+	len := aReadStream next.
+	sign := aReadStream next.
+	number := 0.
+	B := 1.
+	1 to: len do: [:each |
+		number := number + (aReadStream next * B).
+		B := B * 256.
+	].
+^sign = 0
+	ifTrue: [number]
+	ifFalse: [number * -1]
+]
+
+{ #category : #'as yet unclassified' }
 BERTDecoder class >> decodeSmallInteger: aReadStream [ 
 	^aReadStream next asInteger
 ]
@@ -138,6 +154,7 @@ BERTDecoder class >> decodeType: aReadStream [
 	tag = 106 ifTrue: [^self decodeNil: aReadStream].
 	tag = 107 ifTrue: [^self decodeString: aReadStream].
 	tag = 108 ifTrue: [^self decodeList: aReadStream].
+	tag = 110 ifTrue: [^self decodeSmallBigInteger: aReadStream].
 
 	"Unhandled"
 	^self error: 'Tag ', tag asString, ' is not decodable'.

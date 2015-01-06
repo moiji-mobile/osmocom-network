@@ -14,7 +14,7 @@ BERTDecoderTest >> decode: aByteArray equals: aSymbol [
 
 { #category : #'as yet unclassified' }
 BERTDecoderTest >> expectedFailures [
-	^#(#testDecodeTime #testDecodeRegex #testDecodeBigInteger #testDecodeFloat)
+	^#(#testDecodeTime #testDecodeRegex #testDecodeFloat)
 ]
 
 { #category : #'as yet unclassified' }
@@ -26,8 +26,9 @@ BERTDecoderTest >> testDecodeAtom [
 
 { #category : #'as yet unclassified' }
 BERTDecoderTest >> testDecodeBigInteger [
+	self decode: #[131 110 4 0 183 235 185 250] equals: 4206488503.
 	self decode: #[131 110 5 0 0 112 201 178 139] equals: 600000000000.
-	self decode: #[131 110 5 0 0 112 201 178 139] equals: -600000000000.
+	self decode: #[131 110 5 1 0 112 201 178 139] equals: -600000000000.
 ]
 
 { #category : #'as yet unclassified' }
