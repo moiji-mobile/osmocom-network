@@ -76,6 +76,11 @@ OsmoMessageSocket >> nextUshort [
 	^socket nextUshort
 ]
 
+{ #category : #'as yet unclassified' }
+OsmoMessageSocket >> readDelegate [
+	^ readDelegate
+]
+
 { #category : #configuration }
 OsmoMessageSocket >> readDelegate: aDelegate [
 	readDelegate := aDelegate
