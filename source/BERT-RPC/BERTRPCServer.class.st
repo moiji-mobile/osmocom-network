@@ -92,9 +92,14 @@ BERTRPCServer >> selectCall: aCollection [
 
 { #category : #'as yet unclassified' }
 BERTRPCServer >> start: aPort [
+	^self start: aPort bindingAddress: #[0 0 0 0]
+]
+
+{ #category : #'as yet unclassified' }
+BERTRPCServer >> start: aPort bindingAddress: bindingAddress [
 	quit := false.
 	socket := Socket newTCP.
-	socket listenOn: aPort backlogSize: 4.
+	socket listenOn: aPort backlogSize: 4 interface: bindingAddress.
 
 	socket localPort = aPort ifFalse: [
 		^self error: 'Port already bound'].
