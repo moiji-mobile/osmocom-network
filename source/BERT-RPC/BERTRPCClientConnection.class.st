@@ -3,7 +3,8 @@ Class {
 	#superclass : #OsmoStreamSocketBase,
 	#instVars : [
 		'server',
-		'writeQueue'
+		'writeQueue',
+		'maxMessageSize'
 	],
 	#category : #'BERT-RPC'
 }
@@ -44,12 +45,19 @@ BERTRPCClientConnection >> dispatchOne [
 	| msg len |
 	
 	len := (socket next: 4)  asUInt32_t.
+	len > maxMessageSize
+		ifTrue: [^self error: 'Message is too big' ].
 	msg := socket next: len.
 	msg size = len
 		ifFalse: [^self error: 'Wrong BERP encoding'].
 	msg := BERTDecoder decode: msg readStream.
 	self dispatchMessage: msg
 
+]
+
+{ #category : #'as yet unclassified' }
+BERTRPCClientConnection >> maxMessageSize: aSize [
+	maxMessageSize := aSize.
 ]
 
 { #category : #'wrong-abstraction' }

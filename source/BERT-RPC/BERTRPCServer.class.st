@@ -8,7 +8,8 @@ Class {
 		'quit',
 		'socket',
 		'acceptLoop',
-		'modules'
+		'modules',
+		'maxMessageSize'
 	],
 	#category : #'BERT-RPC'
 }
@@ -67,6 +68,7 @@ BERTRPCServer >> handleNewConnection: aStream [
 	conn := BERTRPCClientConnection new
 				server: self;
 				socket: aStream;
+				maxMessageSize: maxMessageSize;
 				yourself.
 	conn start.
 ]
@@ -75,6 +77,17 @@ BERTRPCServer >> handleNewConnection: aStream [
 BERTRPCServer >> initialize [
 	super initialize.
 	modules := Dictionary new.
+	maxMessageSize := SmallInteger maxVal.
+]
+
+{ #category : #'as yet unclassified' }
+BERTRPCServer >> maxMessageSize [
+	^ maxMessageSize
+]
+
+{ #category : #'as yet unclassified' }
+BERTRPCServer >> maxMessageSize: anInteger [ 
+	maxMessageSize := anInteger
 ]
 
 { #category : #'as yet unclassified' }
