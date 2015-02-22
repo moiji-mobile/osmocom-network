@@ -1,3 +1,6 @@
+"
+I am the debug area for MTP Layer3
+"
 Class {
 	#name : #LogAreaMTP3,
 	#superclass : #LogArea,
