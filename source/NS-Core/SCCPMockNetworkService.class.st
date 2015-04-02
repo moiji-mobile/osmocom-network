@@ -30,6 +30,11 @@ SCCPMockNetworkService >> defaultRoute [
 ]
 
 { #category : #'as yet unclassified' }
+SCCPMockNetworkService >> dequeueMessage [
+	^messageQueue removeFirst
+]
+
+{ #category : #'as yet unclassified' }
 SCCPMockNetworkService >> dispatchMessages [
 	messageQueue do: [ :message |
 		sentPackets add: (SCCPMessage decode: message) data.
