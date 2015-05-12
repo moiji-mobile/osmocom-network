@@ -14,5 +14,5 @@ a single ASP to send one ASPActive for one interface at a time.
 Class {
 	#name : #M3UAApplicationServerProcess,
 	#superclass : #Object,
-	#category : #'OsmoNetwork-M3UA'
+	#category : #M3UA
 }
