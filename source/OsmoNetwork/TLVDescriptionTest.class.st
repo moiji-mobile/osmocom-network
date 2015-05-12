@@ -4,7 +4,7 @@ I try to test the TLV Description
 Class {
 	#name : #TLVDescriptionTest,
 	#superclass : #TestCase,
-	#category : #'OsmoNetwork-Tests'
+	#category : #'OsmoNetworkPrimitives-Tests'
 }
 
 { #category : #'as yet unclassified' }
