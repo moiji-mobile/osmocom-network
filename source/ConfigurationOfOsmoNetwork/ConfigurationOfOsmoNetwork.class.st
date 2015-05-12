@@ -144,13 +144,14 @@ ConfigurationOfOsmoNetwork >> baseline01: spec [
 				spec requires: #('OsmoCore' ). ];
 			package: #M3UA with: [
 				spec requires: #('OsmoCore' ). ];
-			package: #SCTP.
+			package: #SCTP;
+			package: #IPA.
 		spec 
-			group: 'default' with: #(#OsmoNetworkPrimitives #OsmoSocket #OsmoTLV #SCCP #'NS-Core' #SCTP );
+			group: 'default' with: #(#OsmoNetworkPrimitives #OsmoSocket #OsmoTLV #SCCP #'NS-Core' #SCTP #IPA );
 			group: 'isup' with: #('default' #ISUP );
 			group: 'm2ua' with: #('default' #M2UA );
-			group: 'ipa' with: #('default' #OpenBSCControl );
-			group: 'm3ua' with: #('default' #M3UA ). ].
+			group: 'm3ua' with: #('default' #M3UA );
+			group: 'control' with: #('default' #OpenBSCControl ). ].
 
 ]
 
