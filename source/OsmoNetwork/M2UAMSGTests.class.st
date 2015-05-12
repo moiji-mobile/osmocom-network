@@ -1,7 +1,7 @@
 Class {
 	#name : #M2UAMSGTests,
 	#superclass : #TestCase,
-	#category : #'OsmoNetwork-M2UA-Tests'
+	#category : #'M2UA-Tests'
 }
 
 { #category : #'as yet unclassified' }

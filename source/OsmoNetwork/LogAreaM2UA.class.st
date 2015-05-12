@@ -4,7 +4,7 @@ I am the debug area for M2UA messages
 Class {
 	#name : #LogAreaM2UA,
 	#superclass : #LogArea,
-	#category : #'OsmoNetwork-M2UA'
+	#category : #M2UA
 }
 
 { #category : #accessing }

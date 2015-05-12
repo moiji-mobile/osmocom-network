@@ -9,7 +9,7 @@ Class {
 		'tag_nr',
 		'data'
 	],
-	#category : #'OsmoNetwork-M2UA'
+	#category : #M2UA
 }
 
 { #category : #parsing }

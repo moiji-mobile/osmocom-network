@@ -1,7 +1,7 @@
 Class {
 	#name : #M2UAApplicationServerProcessNotify,
 	#superclass : #M2UAASPMGMTMessage,
-	#category : #'OsmoNetwork-M2UA'
+	#category : #M2UA
 }
 
 { #category : #'as yet unclassified' }

@@ -1,7 +1,7 @@
 Class {
 	#name : #M2UAAsStateInactive,
 	#superclass : #M2UAAsState,
-	#category : #'OsmoNetwork-M2UA-States'
+	#category : #'M2UA-States'
 }
 
 { #category : #'state-changes' }

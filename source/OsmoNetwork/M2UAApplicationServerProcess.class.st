@@ -34,7 +34,7 @@ Class {
 		'as_state',
 		'mtpBoundary'
 	],
-	#category : #'OsmoNetwork-M2UA'
+	#category : #M2UA
 }
 
 { #category : #'as yet unclassified' }

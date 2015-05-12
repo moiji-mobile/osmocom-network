@@ -14,7 +14,7 @@ Class {
 	#instVars : [
 		'state'
 	],
-	#category : #'OsmoNetwork-M2UA-States'
+	#category : #'M2UA-States'
 }
 
 { #category : #'as yet unclassified' }

@@ -4,7 +4,7 @@ I hold the M2UA specific constants
 Class {
 	#name : #M2UAConstants,
 	#superclass : #UAConstants,
-	#category : #'OsmoNetwork-M2UA'
+	#category : #M2UA
 }
 
 { #category : #constants }

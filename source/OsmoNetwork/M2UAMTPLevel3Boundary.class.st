@@ -11,7 +11,7 @@ Class {
 		'management',
 		'on_out_of_service'
 	],
-	#category : #'OsmoNetwork-M2UA'
+	#category : #M2UA
 }
 
 { #category : #creation }

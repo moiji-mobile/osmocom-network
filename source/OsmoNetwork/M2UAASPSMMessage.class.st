@@ -4,7 +4,7 @@ Application Server Process State Maintenance (ASPSM) messages
 Class {
 	#name : #M2UAASPSMMessage,
 	#superclass : #M2UAMSG,
-	#category : #'OsmoNetwork-M2UA'
+	#category : #M2UA
 }
 
 { #category : #'as yet unclassified' }

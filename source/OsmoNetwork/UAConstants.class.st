@@ -18,7 +18,7 @@ I hold the mapping from M2UA constants to their
 Class {
 	#name : #UAConstants,
 	#superclass : #Object,
-	#category : #'OsmoNetwork-M2UA'
+	#category : #M2UA
 }
 
 { #category : #constants }

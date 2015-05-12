@@ -25,5 +25,5 @@ do it.
 Class {
 	#name : #M2UATerminology,
 	#superclass : #Object,
-	#category : #'OsmoNetwork-M2UA'
+	#category : #M2UA
 }

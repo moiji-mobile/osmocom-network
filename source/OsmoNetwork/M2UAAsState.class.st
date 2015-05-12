@@ -1,5 +1,5 @@
 Class {
 	#name : #M2UAAsState,
 	#superclass : #M2UAStateBase,
-	#category : #'OsmoNetwork-M2UA-States'
+	#category : #'M2UA-States'
 }

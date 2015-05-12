@@ -11,7 +11,7 @@ Class {
 		'as',
 		'asp'
 	],
-	#category : #'OsmoNetwork-M2UA-Tests'
+	#category : #'M2UA-Tests'
 }
 
 { #category : #creation }

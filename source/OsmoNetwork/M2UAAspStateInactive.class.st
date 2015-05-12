@@ -1,7 +1,7 @@
 Class {
 	#name : #M2UAAspStateInactive,
 	#superclass : #M2UAAspState,
-	#category : #'OsmoNetwork-M2UA-States'
+	#category : #'M2UA-States'
 }
 
 { #category : #'as yet unclassified' }

@@ -1,7 +1,7 @@
 Class {
 	#name : #M2UAMAUPStateConfirm,
 	#superclass : #M2UAMAUPMessage,
-	#category : #'OsmoNetwork-M2UA'
+	#category : #M2UA
 }
 
 { #category : #'as yet unclassified' }

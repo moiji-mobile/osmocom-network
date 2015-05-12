@@ -4,7 +4,7 @@ A M2UAApplicationServerProcessTest is a test class for testing the behavior of M
 Class {
 	#name : #M2UAApplicationServerProcessTest,
 	#superclass : #TestCase,
-	#category : #'OsmoNetwork-M2UA-Tests'
+	#category : #'M2UA-Tests'
 }
 
 { #category : #'as yet unclassified' }

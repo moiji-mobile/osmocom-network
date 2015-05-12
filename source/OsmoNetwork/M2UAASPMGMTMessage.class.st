@@ -1,7 +1,7 @@
 Class {
 	#name : #M2UAASPMGMTMessage,
 	#superclass : #M2UAMSG,
-	#category : #'OsmoNetwork-M2UA'
+	#category : #M2UA
 }
 
 { #category : #'as yet unclassified' }

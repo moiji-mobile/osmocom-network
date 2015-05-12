@@ -11,7 +11,7 @@ Class {
 		'targetState',
 		'managedProcess'
 	],
-	#category : #'OsmoNetwork-M2UA'
+	#category : #M2UA
 }
 
 { #category : #accessing }

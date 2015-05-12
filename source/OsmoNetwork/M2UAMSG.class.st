@@ -27,7 +27,7 @@ Class {
 		'msg_type',
 		'tags'
 	],
-	#category : #'OsmoNetwork-M2UA'
+	#category : #M2UA
 }
 
 { #category : #parsing }
