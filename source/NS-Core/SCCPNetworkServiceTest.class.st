@@ -27,8 +27,7 @@ SCCPNetworkServiceTest >> testSending [
 	vlr sendUnitData: #(1 2 3) asByteArray  to:  hlrAddress  from: vlrAddress.
 	
 	"Wait for the data to be sent"
-	self deny: (sem waitTimeoutSeconds: 1).
-	self deny: (sem waitTimeoutSeconds: 2).
+	self deny: (sem waitTimeoutSeconds: 3).
 	"Weak condition of SSN matching as two SCCP addresses can not be compared yet"
 	self
 		assert: gotCalledAddr ssn = hlrAddress ssn;
