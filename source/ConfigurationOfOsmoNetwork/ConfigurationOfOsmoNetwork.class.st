@@ -130,28 +130,29 @@ ConfigurationOfOsmoNetwork >> baseline01: spec [
 				spec
 					className: #ConfigurationOfPetitParser;
 					versionString: #'stable';
+					loads: #('Core' );
 					repository: 'http://smalltalkhub.com/mc/Moose/PetitParser/main/' ].
 		spec 
 			package: #OsmoNetworkPrimitives with: [
 				spec requires: #('OsmoLogging' ). ];
-			package: #OsmoSocket with: [
-				spec requires: #(#IPA 'OsmoCore' ). ];
-			package: #ISUP with: [
-				spec requires: #(#OsmoNetworkPrimitives #OsmoTLV ). ];
 			package: #SCCP with: [
 				spec requires: #('OsmoLogging' ). ];
-			package: #'NS-Core' with: [
-				spec requires: #(#SCCP #IPA #OsmoSocket ). ];
 			package: #OpenBSCControl with: [
 				spec requires: #('OsmoLogging' 'PetitParser' ). ];
 			package: #OsmoTLV;
+			package: #ISUP with: [
+				spec requires: #(#OsmoNetworkPrimitives #OsmoTLV ). ];
 			package: #M2UA with: [
 				spec requires: #('OsmoCore' 'OsmoLogging' #OsmoNetworkPrimitives ). ];
 			package: #M3UA;
+			package: #IPA with: [
+				spec requires: #('OsmoLogging' #OsmoNetworkPrimitives ). ];
+			package: #OsmoSocket with: [
+				spec requires: #(#IPA 'OsmoCore' ). ];
 			package: #SCTP with: [
 				spec requires: #(#OsmoSocket ). ];
-			package: #IPA with: [
-				spec requires: #('OsmoLogging' #OsmoNetworkPrimitives ). ].
+			package: #'NS-Core' with: [
+				spec requires: #(#SCCP #IPA #OsmoSocket ). ].
 		spec 
 			group: 'default' with: #(#OsmoNetworkPrimitives #OsmoSocket #OsmoTLV #SCCP #'NS-Core' #SCTP #IPA );
 			group: 'isup' with: #('default' #ISUP );
