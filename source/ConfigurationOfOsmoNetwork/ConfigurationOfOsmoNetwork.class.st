@@ -130,7 +130,7 @@ ConfigurationOfOsmoNetwork >> baseline01: spec [
 				spec
 					className: #ConfigurationOfPetitParser;
 					versionString: #'stable';
-					loads: #('Core' );
+					loads: #('Core' 'Tests' );
 					repository: 'http://smalltalkhub.com/mc/Moose/PetitParser/main/' ].
 		spec 
 			package: #OsmoNetworkPrimitives with: [
