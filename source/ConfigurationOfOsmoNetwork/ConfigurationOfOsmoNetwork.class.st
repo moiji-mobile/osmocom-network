@@ -151,7 +151,8 @@ ConfigurationOfOsmoNetwork >> baseline01: spec [
 			group: 'isup' with: #('default' #ISUP );
 			group: 'm2ua' with: #('default' #M2UA );
 			group: 'm3ua' with: #('default' #M3UA );
-			group: 'control' with: #('default' #OpenBSCControl ). ].
+			group: 'control' with: #('default' #OpenBSCControl );
+			group: 'all' with: #('default' 'isup' 'm2ua' 'm3ua' 'control' ). ].
 
 ]
 
