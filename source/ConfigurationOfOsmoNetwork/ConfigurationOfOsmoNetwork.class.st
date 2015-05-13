@@ -125,27 +125,33 @@ ConfigurationOfOsmoNetwork >> baseline01: spec [
 				spec
 					className: #ConfigurationOfOsmoLogging;
 					versionString: #'bleedingEdge';
-					repository: 'http://smalltalkhub.com/mc/osmocom/Logging/main/' ].
+					repository: 'http://smalltalkhub.com/mc/osmocom/Logging/main/' ];
+			project: 'PetitParser' with: [
+				spec
+					className: #ConfigurationOfPetitParser;
+					versionString: #'stable';
+					repository: 'http://smalltalkhub.com/mc/Moose/PetitParser/main/' ].
 		spec 
 			package: #OsmoNetworkPrimitives with: [
-				spec requires: #('OsmoCore' ). ];
+				spec requires: #('OsmoLogging' ). ];
 			package: #OsmoSocket with: [
-				spec requires: #(#OsmoNetworkPrimitives ). ];
+				spec requires: #(#IPA 'OsmoCore' ). ];
 			package: #ISUP with: [
-				spec requires: #('OsmoCore' ). ];
+				spec requires: #(#OsmoNetworkPrimitives #OsmoTLV ). ];
 			package: #SCCP with: [
-				spec requires: #('OsmoCore' ). ];
+				spec requires: #('OsmoLogging' ). ];
 			package: #'NS-Core' with: [
-				spec requires: #('OsmoCore' #SCCP ). ];
+				spec requires: #(#SCCP #IPA #OsmoSocket ). ];
 			package: #OpenBSCControl with: [
-				spec requires: #(#OsmoSocket ). ];
+				spec requires: #('OsmoLogging' 'PetitParser' ). ];
 			package: #OsmoTLV;
 			package: #M2UA with: [
-				spec requires: #('OsmoCore' ). ];
-			package: #M3UA with: [
-				spec requires: #('OsmoCore' ). ];
-			package: #SCTP;
-			package: #IPA.
+				spec requires: #('OsmoCore' 'OsmoLogging' #OsmoNetworkPrimitives ). ];
+			package: #M3UA;
+			package: #SCTP with: [
+				spec requires: #(#OsmoSocket ). ];
+			package: #IPA with: [
+				spec requires: #('OsmoLogging' #OsmoNetworkPrimitives ). ].
 		spec 
 			group: 'default' with: #(#OsmoNetworkPrimitives #OsmoSocket #OsmoTLV #SCCP #'NS-Core' #SCTP #IPA );
 			group: 'isup' with: #('default' #ISUP );
