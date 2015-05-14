@@ -99,20 +99,20 @@ TLVDescriptionContainer >> decodeByteStream: aStream [
 	decoded := OrderedCollection new.
 	first_optional := true.
 	self fieldsDo: 
-		[:type :clazz | 
-		type = #fixed 
+		[:field_type :clazz | 
+		field_type = #fixed 
 		    ifTrue: 
 			[self 
 			    parseFixed: aStream
 			    with: clazz
 			    into: decoded].
-		type = #variable 
+		field_type = #variable 
 		    ifTrue: 
 			[self 
 			    parseVariable: aStream
 			    with: clazz
 			    into: decoded].
-		type = #optional 
+		field_type = #optional 
 		    ifTrue: 
 			[first_optional 
 			    ifTrue: 
@@ -122,7 +122,7 @@ TLVDescriptionContainer >> decodeByteStream: aStream [
 			    parseOptional: aStream
 			    with: clazz
 			    into: decoded].
-		type = #optionals 
+		field_type = #optionals 
 		    ifTrue: 
 			[first_optional 
 			    ifTrue: 
@@ -151,7 +151,7 @@ TLVDescriptionContainer >> encodeCollection: aCollection [
 
 	"Write the fixed portion"
 	self fixedDo: 
-		[:type :clazz | 
+		[:field_type :clazz | 
 		self 
 		    writeFixed: msg
 		    with: clazz
@@ -161,7 +161,7 @@ TLVDescriptionContainer >> encodeCollection: aCollection [
 
 	"Write the variable portion"
 	self variableDo: 
-		[:type :clazz | 
+		[:field_type :clazz | 
 		self 
 		    writeVariable: msg
 		    with: clazz
@@ -169,19 +169,19 @@ TLVDescriptionContainer >> encodeCollection: aCollection [
 		    state: aState].
 	self writeVariableEnd: msg state: aState.
 	self fieldsDo: 
-		[:type :clazz | 
+		[:field_type :clazz | 
 		"Check if we are compatible"
 
 		(clazz isCompatible: stream peek) 
 		    ifTrue: 
-			[type = #optional 
+			[field_type = #optional 
 			    ifTrue: 
 				[self 
 				    writeOptional: msg
 				    with: clazz
 				    from: stream next
 				    state: aState].
-			type = #optionals ifTrue: [self notYetImplemented]]].
+			field_type = #optionals ifTrue: [self notYetImplemented]]].
 	^msg contents
 
 ]
