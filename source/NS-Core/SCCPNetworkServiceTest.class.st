@@ -6,8 +6,8 @@ Class {
 
 { #category : #tests }
 SCCPNetworkServiceTest >> testSending [
-	| hlr hlrAddress vlr vlrAddress sem gotCalledAddr gotCallingAddr gotData |
-	sem := Semaphore new.
+	| hlr hlrAddress vlr vlrAddress gotCalledAddr gotCallingAddr gotData onUnitDataCalled |
+	onUnitDataCalled := false.
 	hlrAddress := SCCPAddress createWith: SCCPAddress ssnHLR.
 	vlrAddress := SCCPAddress createWith: SCCPAddress ssnVLR.
 	hlr := SCCPMockNetworkService new
@@ -15,7 +15,7 @@ SCCPNetworkServiceTest >> testSending [
 				gotCalledAddr := called.
 				gotCallingAddr := calling.
 				gotData := data.
-				sem signal];
+				onUnitDataCalled := true];
 			yourself.
 	vlr := SCCPMockNetworkService new
 			onUnitData: [:called :calling :data | self fail];
@@ -27,7 +27,7 @@ SCCPNetworkServiceTest >> testSending [
 	vlr sendUnitData: #(1 2 3) asByteArray  to:  hlrAddress  from: vlrAddress.
 	
 	"Wait for the data to be sent"
-	self deny: (sem waitTimeoutSeconds: 3).
+	self assert: onUnitDataCalled.
 	"Weak condition of SSN matching as two SCCP addresses can not be compared yet"
 	self
 		assert: gotCalledAddr ssn = hlrAddress ssn;
