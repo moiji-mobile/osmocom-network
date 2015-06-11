@@ -10,7 +10,8 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'on_data',
-		'defaultRoute'
+		'defaultRoute',
+		'logger'
 	],
 	#category : #'NS-Core'
 }
@@ -42,6 +43,12 @@ SCCPNetworkService >> doReceive: aMsg [
 { #category : #internal }
 SCCPNetworkService >> doSend: aMessage to: aToPoc from: aFromPoc [
 	^ self subclassResponsibility
+]
+
+{ #category : #'as yet unclassified' }
+SCCPNetworkService >> initialize [
+	super initialize.
+	logger := LogStructuredLogger for: self area: #sccp.
 ]
 
 { #category : #registration }

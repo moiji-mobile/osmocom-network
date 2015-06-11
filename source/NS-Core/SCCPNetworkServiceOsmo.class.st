@@ -2,7 +2,8 @@ Class {
 	#name : #SCCPNetworkServiceOsmo,
 	#superclass : #SCCPNetworkService,
 	#instVars : [
-		'conn'
+		'conn',
+		'receiveThrottle'
 	],
 	#classInstVars : [
 		'instance'
@@ -38,6 +39,7 @@ SCCPNetworkServiceOsmo >> hostname: aHostname port: aPort [
 { #category : #'as yet unclassified' }
 SCCPNetworkServiceOsmo >> initialize [
 	super initialize.
+	receiveThrottle := 20.
 	conn := OsmoAppConnection new
 				onConnect: [:dispatcher | self registerOn: dispatcher];
 				yourself.
@@ -45,8 +47,21 @@ SCCPNetworkServiceOsmo >> initialize [
 
 { #category : #private }
 SCCPNetworkServiceOsmo >> ipaRecv: aMsg [
-	OsmoDispatcher dispatchBlock: [
+	| dispatcher pendingBlocks |
+	dispatcher := Dispatcher instance.
+	pendingBlocks := dispatcher pendingBlocks.
+	
+	pendingBlocks > receiveThrottle ifTrue: [
+		logger logNotice: 'Throttling SCCP message dispatch' with: { 'msg' -> aMsg. 'pending' -> pendingBlocks}.
+		^self].
+
+	dispatcher dispatchBlock: [
 		self doReceive: aMsg]. 
+]
+
+{ #category : #'as yet unclassified' }
+SCCPNetworkServiceOsmo >> receiveThrottle: anInteger [ 
+	receiveThrottle := anInteger
 ]
 
 { #category : #private }
