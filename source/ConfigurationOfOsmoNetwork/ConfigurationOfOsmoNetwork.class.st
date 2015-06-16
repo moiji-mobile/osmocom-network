@@ -152,7 +152,11 @@ ConfigurationOfOsmoNetwork >> baseline01: spec [
 			package: #SCTP with: [
 				spec requires: #(#OsmoSocket ). ];
 			package: #'NS-Core' with: [
-				spec requires: #(#SCCP #IPA #OsmoSocket ). ].
+				spec requires: #(#SCCP #IPA #OsmoSocket #'MTP3-LinkHandling' ). ];
+			package: #'MTP3-Codec' with: [
+				spec requires: #('OsmoCore' 'OsmoLogging' ). ];
+			package: #'MTP3-LinkHandling' with: [
+				spec requires: #('OsmoCore' 'OsmoLogging' #'MTP3-Codec' ). ].
 		spec 
 			group: 'default' with: #(#OsmoNetworkPrimitives #OsmoSocket #OsmoTLV #SCCP #'NS-Core' #SCTP #IPA );
 			group: 'isup' with: #('default' #ISUP );
