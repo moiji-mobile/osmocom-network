@@ -3,7 +3,8 @@ Class {
 	#superclass : #SCCPNetworkService,
 	#instVars : [
 		'conn',
-		'receiveThrottle'
+		'receiveThrottle',
+		'rxCounter'
 	],
 	#classInstVars : [
 		'instance'
@@ -40,6 +41,7 @@ SCCPNetworkServiceOsmo >> hostname: aHostname port: aPort [
 SCCPNetworkServiceOsmo >> initialize [
 	super initialize.
 	receiveThrottle := 20.
+	rxCounter := 0.
 	conn := OsmoAppConnection new
 				onConnect: [:dispatcher | self registerOn: dispatcher];
 				yourself.
@@ -50,13 +52,24 @@ SCCPNetworkServiceOsmo >> ipaRecv: aMsg [
 	| dispatcher pendingBlocks |
 	dispatcher := Dispatcher instance.
 	pendingBlocks := dispatcher pendingBlocks.
-	
+
+	"This atomicity is not guranteed"
+	rxCounter := rxCounter + 1.
+
 	pendingBlocks > receiveThrottle ifTrue: [
 		logger logNotice: 'Throttling SCCP message dispatch' with: { 'msg' -> aMsg. 'pending' -> pendingBlocks}.
 		^self].
 
 	dispatcher dispatchBlock: [
 		self doReceive: aMsg]. 
+]
+
+{ #category : #'as yet unclassified' }
+SCCPNetworkServiceOsmo >> readResetRxCounter [
+	| res |
+	res := rxCounter.
+	rxCounter := 0.
+	^res
 ]
 
 { #category : #'as yet unclassified' }
