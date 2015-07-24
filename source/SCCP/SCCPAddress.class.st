@@ -96,6 +96,12 @@ SCCPAddress class >> ssnEIC [
 ]
 
 { #category : #constants }
+SCCPAddress class >> ssnGSMSCF [
+	^147
+
+]
+
+{ #category : #constants }
 SCCPAddress class >> ssnGsmSCF [
 	^147
 
