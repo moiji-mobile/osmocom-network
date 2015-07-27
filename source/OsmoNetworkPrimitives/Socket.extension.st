@@ -14,14 +14,19 @@ Socket >> isOpen [
 
 { #category : #'*OsmoNetworkPrimitives-Pharo' }
 Socket >> next [
-	| data |
+	| data res |
 	data := ByteArray new: 2048.
 
 	">>#waitForData will block forever.. we use some form of polling"
 	[self dataAvailable] 
 	    whileFalse: [[self waitForDataFor: 10] on: ConnectionTimedOut do: []].
-	self receiveUDPDataInto: data.
-	^data
+	res := self receiveUDPDataInto: data.
+	^OsmoUDPDatagram new
+		data: data;
+		dataSize: res first;
+		address: res second;
+		port: res third;
+		yourself
 
 ]
 
