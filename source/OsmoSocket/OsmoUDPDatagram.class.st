@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'port',
 		'address',
-		'data'
+		'data',
+		'dataSize'
 	],
 	#category : #OsmoSocket
 }
@@ -16,6 +17,11 @@ OsmoUDPDatagram class >> data: aString address: anAddress port: aPort [
 		address: anAddress;
 		port: aPort;
 		yourself
+]
+
+{ #category : #'as yet unclassified' }
+OsmoUDPDatagram >> address [
+	^ address
 ]
 
 { #category : #'as yet unclassified' }
@@ -34,6 +40,23 @@ OsmoUDPDatagram >> data: aData [
 ]
 
 { #category : #'as yet unclassified' }
+OsmoUDPDatagram >> dataSize: aSize [
+	dataSize := aSize
+]
+
+{ #category : #'as yet unclassified' }
+OsmoUDPDatagram >> port [
+	^ port
+]
+
+{ #category : #'as yet unclassified' }
 OsmoUDPDatagram >> port: aPort [
 	port := aPort
+]
+
+{ #category : #'as yet unclassified' }
+OsmoUDPDatagram >> size [
+	^dataSize isNil
+		ifTrue: [data size]
+		ifFalse: [dataSize]
 ]

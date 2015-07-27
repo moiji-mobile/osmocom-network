@@ -52,25 +52,25 @@ OsmoUDPSocket >> queueData: aData [
 
 { #category : #processing }
 OsmoUDPSocket >> runRXProcess [
-	[| data |
-	socket ensureReadable.
-	socket isOpen 
-	    ifFalse: [^self logNotice: name , ' socket closed.' area: #core].
-	data := socket next.
-	on_data value: data] 
-		repeat
-
+	[ 
+		|  datagram |
+		socket ensureReadable.
+		socket isOpen
+			ifFalse: [ ^ self logNotice: name , ' socket closed.' area: #core ].
+		datagram := socket next.
+		on_data value: datagram.
+	] repeat
 ]
 
 { #category : #processing }
 OsmoUDPSocket >> runTXProcess [
-	[| data |
-	data := queue next.
-	data = nil 
-	    ifTrue: [^self logNotice: name , ' TX asked to quit.' area: #core].
-	socket nextPut: data] 
-		repeat
-
+	[ 
+		| datagram |
+		datagram := queue next.
+		datagram = nil
+			ifTrue: [^self logNotice: name , ' TX asked to quit.' area: #core].
+		socket sendUDPData: datagram data toHost:  datagram address port: datagram port.
+	] repeat
 ]
 
 { #category : #creation }
