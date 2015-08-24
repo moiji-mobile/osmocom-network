@@ -343,3 +343,8 @@ SCCPAddress >> subSystemNumber: aSubSystemNumber [
 	subSystemNumber := aSubSystemNumber
 
 ]
+
+{ #category : #'as yet unclassified' }
+SCCPAddress >> updateGlobalTitle: aGT [ 
+	globalTitle := aGT
+]
