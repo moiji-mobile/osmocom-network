@@ -110,5 +110,5 @@ SCCPNetworkService >> signalUnitData: msg [
 	<tcapMethod>
 	"Inform the upper layer about data"
 	on_data ifNotNil: [
-		on_data value: msg calledAddr value: msg callingAddr value: msg data ]
+		on_data cull: msg calledAddr cull: msg callingAddr cull: msg data cull: msg]
 ]
