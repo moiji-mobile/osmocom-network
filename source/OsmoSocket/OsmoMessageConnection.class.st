@@ -23,12 +23,17 @@ OsmoMessageConnection class >> connectionException [
 
 ]
 
+{ #category : #'as yet unclassified' }
+OsmoMessageConnection class >> osmoMessageSocket [
+	^OsmoMessageSocket
+]
+
 { #category : #private }
 OsmoMessageConnection >> connect [
 	| tcpSocket |
 	tcpSocket := (SocketStream openConnectionToHostNamed: hostname port: port)
 					binary; noTimeout; yourself.
-	socket := OsmoMessageSocket new
+	socket := self class osmoMessageSocket new
 					errorDelegate: self;
 					readDelegate: readDelegate;
 					socket: tcpSocket;
