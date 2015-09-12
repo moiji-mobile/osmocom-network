@@ -1,13 +1,11 @@
+"
+I push data into a blocking queue. My user then can use one or more workers to pull data out of the socket.
+"
 Class {
 	#name : #SCCPNetworkServiceOsmo,
-	#superclass : #SCCPNetworkService,
+	#superclass : #SCCPNetworkServiceOsmoBase,
 	#instVars : [
-		'conn',
-		'receiveThrottle',
-		'rxCounter'
-	],
-	#classInstVars : [
-		'instance'
+		'receiveThrottle'
 	],
 	#category : #'NS-Core'
 }
@@ -25,36 +23,11 @@ SCCPNetworkServiceOsmo class >> new [
 				yourself.
 ]
 
-{ #category : #'as yet unclassified' }
-SCCPNetworkServiceOsmo >> doSend: aMessage to: aToPoc from: aFromPoc [
-	conn nextPut: aMessage with: IPAConstants protocolSCCP.
-]
-
-{ #category : #'as yet unclassified' }
-SCCPNetworkServiceOsmo >> hostname: aHostname port: aPort [
-	conn
-		hostname: aHostname;
-		port: aPort.
-]
-
-{ #category : #'as yet unclassified' }
-SCCPNetworkServiceOsmo >> initialize [
-	super initialize.
-	receiveThrottle := 20.
-	rxCounter := 0.
-	conn := OsmoAppConnection new
-				onConnect: [:dispatcher | self registerOn: dispatcher];
-				yourself.
-]
-
 { #category : #private }
-SCCPNetworkServiceOsmo >> ipaRecv: aMsg [
+SCCPNetworkServiceOsmo >> doIpaRecv: aMsg [
 	| dispatcher pendingBlocks |
 	dispatcher := Dispatcher instance.
 	pendingBlocks := dispatcher pendingBlocks.
-
-	"This atomicity is not guranteed"
-	rxCounter := rxCounter + 1.
 
 	pendingBlocks > receiveThrottle ifTrue: [
 		logger logNotice: 'Throttling SCCP message dispatch' with: { 'msg' -> aMsg. 'pending' -> pendingBlocks}.
@@ -65,31 +38,17 @@ SCCPNetworkServiceOsmo >> ipaRecv: aMsg [
 ]
 
 { #category : #'as yet unclassified' }
-SCCPNetworkServiceOsmo >> readResetRxCounter [
-	| res |
-	res := rxCounter.
-	rxCounter := 0.
-	^res
+SCCPNetworkServiceOsmo >> initialize [
+	super initialize.
+	receiveThrottle := 20.
+	conn := OsmoAppConnection new
+				onConnect: [:dispatcher | self registerOn: dispatcher];
+				yourself.
 ]
 
 { #category : #'as yet unclassified' }
 SCCPNetworkServiceOsmo >> receiveThrottle: anInteger [ 
 	receiveThrottle := anInteger
-]
-
-{ #category : #private }
-SCCPNetworkServiceOsmo >> registerOn: aDispatcher [
-	aDispatcher addHandler: IPAConstants protocolSCCP on: [:msg | self ipaRecv: msg].
-]
-
-{ #category : #'as yet unclassified' }
-SCCPNetworkServiceOsmo >> start [
-	conn start.
-]
-
-{ #category : #'as yet unclassified' }
-SCCPNetworkServiceOsmo >> stop [
-	conn stop
 ]
 
 { #category : #'as yet unclassified' }
