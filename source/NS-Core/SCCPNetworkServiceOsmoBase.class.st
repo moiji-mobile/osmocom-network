@@ -32,7 +32,7 @@ SCCPNetworkServiceOsmoBase class >> new [
 
 { #category : #'as yet unclassified' }
 SCCPNetworkServiceOsmoBase >> doSend: aMessage to: aToPoc from: aFromPoc [
-	conn nextPut: aMessage with: IPAConstants protocolSCCP.
+	^self subclassResponsibility
 ]
 
 { #category : #'as yet unclassified' }

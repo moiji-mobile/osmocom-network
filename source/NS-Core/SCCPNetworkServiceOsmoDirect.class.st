@@ -17,6 +17,11 @@ SCCPNetworkServiceOsmoDirect >> doIpaRecv: aMsg [
 ]
 
 { #category : #'as yet unclassified' }
+SCCPNetworkServiceOsmoDirect >> doSend: aMessage to: aToPoc from: aFromPoc [
+	delegate nextPut: aMessage with: IPAConstants protocolSCCP.
+]
+
+{ #category : #'as yet unclassified' }
 SCCPNetworkServiceOsmoDirect >> initialize [
 	super initialize.
 

@@ -38,6 +38,11 @@ SCCPNetworkServiceOsmo >> doIpaRecv: aMsg [
 ]
 
 { #category : #'as yet unclassified' }
+SCCPNetworkServiceOsmo >> doSend: aMessage to: aToPoc from: aFromPoc [
+	conn nextPut: aMessage with: IPAConstants protocolSCCP.
+]
+
+{ #category : #'as yet unclassified' }
 SCCPNetworkServiceOsmo >> initialize [
 	super initialize.
 	receiveThrottle := 20.
