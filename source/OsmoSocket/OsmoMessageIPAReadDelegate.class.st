@@ -5,7 +5,8 @@ Class {
 		'demuxer',
 		'muxer',
 		'dispatcher',
-		'token'
+		'token',
+		'connect_block'
 	],
 	#category : #OsmoSocket
 }
@@ -13,6 +14,14 @@ Class {
 { #category : #'as yet unclassified' }
 OsmoMessageIPAReadDelegate >> nextPut: aData with: aConstant [
 	muxer nextPut: aData with: aConstant
+]
+
+{ #category : #'as yet unclassified' }
+OsmoMessageIPAReadDelegate >> onConnect: aBlock [
+	"Call the block when the socket is being connected and the dispatcher
+	 is set-up. The callback will have the dispatcher as parameter."
+	connect_block := aBlock
+
 ]
 
 { #category : #'as yet unclassified' }
@@ -33,6 +42,8 @@ OsmoMessageIPAReadDelegate >> onNewConnection: aSocket [
 		    muxer: muxer;
 		    token: token;
 		    yourself.
+
+	connect_block ifNotNil: [connect_block value: dispatcher].
 
 ]
 
