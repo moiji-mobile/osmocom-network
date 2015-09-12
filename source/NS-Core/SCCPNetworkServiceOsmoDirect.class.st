@@ -33,6 +33,11 @@ SCCPNetworkServiceOsmoDirect >> initialize [
 ]
 
 { #category : #'as yet unclassified' }
+SCCPNetworkServiceOsmoDirect >> queue [
+	^queue
+]
+
+{ #category : #'as yet unclassified' }
 SCCPNetworkServiceOsmoDirect >> signalUnitData: msg [
 	<tcapMethod>
 
