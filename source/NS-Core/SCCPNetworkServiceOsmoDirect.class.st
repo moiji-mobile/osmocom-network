@@ -13,7 +13,13 @@ Class {
 
 { #category : #'as yet unclassified' }
 SCCPNetworkServiceOsmoDirect >> doIpaRecv: aMsg [
-	self doReceive: aMsg
+	[
+		self logManager context: 'sccp-msg' value: aMsg.
+		self doReceive: aMsg
+	] on: UnhandledError do: [:err |
+		"Ignore errors on SCCP"
+		err exception logException: 'SCCP decoding/dispatch' area: #sccp.
+	]
 ]
 
 { #category : #'as yet unclassified' }
