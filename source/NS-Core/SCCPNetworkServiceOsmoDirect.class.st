@@ -5,8 +5,7 @@ Class {
 	#name : #SCCPNetworkServiceOsmoDirect,
 	#superclass : #SCCPNetworkServiceOsmoBase,
 	#instVars : [
-		'delegate',
-		'queue'
+		'delegate'
 	],
 	#category : #'NS-Core'
 }
@@ -31,27 +30,10 @@ SCCPNetworkServiceOsmoDirect >> doSend: aMessage to: aToPoc from: aFromPoc [
 SCCPNetworkServiceOsmoDirect >> initialize [
 	super initialize.
 
-	queue := OsmoBlockingQueue new.
 	conn := OsmoMessageDirectConnection new.
 	delegate := OsmoMessageIPAReadDelegate new.
 	delegate onConnect: [:dispatcher | self registerOn: dispatcher].
 	conn readDelegate: delegate.
-]
-
-{ #category : #'as yet unclassified' }
-SCCPNetworkServiceOsmoDirect >> queue [
-	^queue
-]
-
-{ #category : #'as yet unclassified' }
-SCCPNetworkServiceOsmoDirect >> signalUnitData: msg [
-	<tcapMethod>
-
-	"Put the message into the queue and block. This is done from within the
-	receive process of the OsmoSocket. This means we only read as quickly
-	as we can process data. In turn it will lead to window scaling of the TCP
-	connection."
-	queue nextPut: msg
 ]
 
 { #category : #'as yet unclassified' }
