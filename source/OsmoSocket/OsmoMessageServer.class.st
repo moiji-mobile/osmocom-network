@@ -15,7 +15,8 @@ Class {
 		'acceptLoop',
 		'serverDelegate',
 		'sem',
-		'clientConnections'
+		'clientConnections',
+		'socketClass'
 	],
 	#category : #OsmoSocket
 }
@@ -46,7 +47,7 @@ OsmoMessageServer >> acceptOneConnection [
 				binary;
 	    			noTimeout;
 				yourself.
-		conn := OsmoMessageSocket new
+		conn := socketClass new
 				errorDelegate: self;
 				socket: socketStream;
 				yourself.
@@ -84,6 +85,7 @@ OsmoMessageServer >> initialize [
 	super initialize.
 	sem := Semaphore forMutualExclusion.
 	clientConnections := OrderedCollection new.
+	socketClass := OsmoMessageSocket.
 ]
 
 { #category : #delegated }
@@ -114,6 +116,11 @@ OsmoMessageServer >> removeConnection: aConnection [
 { #category : #'as yet unclassified' }
 OsmoMessageServer >> serverDelegate: aDelegate [
 	serverDelegate := aDelegate
+]
+
+{ #category : #'as yet unclassified' }
+OsmoMessageServer >> socketClass: aClass [
+	socketClass := aClass
 ]
 
 { #category : #'as yet unclassified' }
