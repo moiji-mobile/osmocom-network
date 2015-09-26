@@ -18,14 +18,6 @@ Class {
 }
 
 { #category : #creation }
-OsmoUDPSocket class >> new [
-	^(super new)
-	    initialize;
-	    yourself
-
-]
-
-{ #category : #creation }
 OsmoUDPSocket >> initialize [
 	queue := SharedQueue new.
 	net_exit := Semaphore new
