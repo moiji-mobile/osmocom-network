@@ -12,7 +12,8 @@ Class {
 		'tx',
 		'net_exit',
 		'name',
-		'on_data'
+		'on_data',
+		'txLock'
 	],
 	#category : #'OsmoSocket-Legacy'
 }
@@ -20,7 +21,8 @@ Class {
 { #category : #creation }
 OsmoUDPSocket >> initialize [
 	queue := SharedQueue new.
-	net_exit := Semaphore new
+	net_exit := Semaphore new.
+	txLock := Semaphore forMutualExclusion.
 
 ]
 
@@ -63,6 +65,17 @@ OsmoUDPSocket >> runTXProcess [
 			ifTrue: [^self logNotice: name , ' TX asked to quit.' area: #core].
 		socket sendUDPData: datagram data toHost:  datagram address port: datagram port.
 	] repeat
+]
+
+{ #category : #'as yet unclassified' }
+OsmoUDPSocket >> sendDatagram: datagram [
+
+	"The Pharo Socket implementation is crazy. The below routine might split the data
+	into multiple datagrams! So add a lock to prevent the theoretical issue of multiple
+	processes sending at the same time and mixing their data"
+	^txLock critical: [
+		socket sendUDPData: datagram data toHost:  datagram address port: datagram port]
+
 ]
 
 { #category : #creation }
