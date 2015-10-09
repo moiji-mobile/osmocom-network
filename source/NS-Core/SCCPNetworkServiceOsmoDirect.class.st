@@ -13,7 +13,7 @@ Class {
 { #category : #'as yet unclassified' }
 SCCPNetworkServiceOsmoDirect >> doIpaRecv: aMsg [
 	ModuleBoundary runSynchronous: [
-		self logManager context: 'sccp-msg' value: aMsg.
+		self logManager context: 'payload' value: aMsg.
 		self doReceive: aMsg
 	]
 ]
