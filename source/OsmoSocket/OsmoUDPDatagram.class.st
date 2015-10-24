@@ -45,6 +45,11 @@ OsmoUDPDatagram >> dataSize: aSize [
 ]
 
 { #category : #'as yet unclassified' }
+OsmoUDPDatagram >> datagramHex [
+	^(data copyFrom: 1 to: dataSize) hex
+]
+
+{ #category : #'as yet unclassified' }
 OsmoUDPDatagram >> port [
 	^ port
 ]
