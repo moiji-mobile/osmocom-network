@@ -46,7 +46,9 @@ OsmoUDPDatagram >> dataSize: aSize [
 
 { #category : #'as yet unclassified' }
 OsmoUDPDatagram >> datagramHex [
-	^(data copyFrom: 1 to: dataSize) hex
+	^(dataSize
+		ifNil: [data]
+		ifNotNil: [data copyFrom: 1 to: dataSize]) hex
 ]
 
 { #category : #'as yet unclassified' }
