@@ -43,6 +43,11 @@ OsmoMessageConnection >> connect [
 ]
 
 { #category : #'as yet unclassified' }
+OsmoMessageConnection >> hostname [
+	^hostname
+]
+
+{ #category : #'as yet unclassified' }
 OsmoMessageConnection >> hostname: aHostname [
 	hostname := aHostname
 ]
@@ -68,6 +73,11 @@ OsmoMessageConnection >> onWriteError: aSocket [
 		^self].
 
 	self socketError: aSocket.
+]
+
+{ #category : #'as yet unclassified' }
+OsmoMessageConnection >> port [
+	^ port
 ]
 
 { #category : #'as yet unclassified' }

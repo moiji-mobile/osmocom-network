@@ -55,6 +55,12 @@ OsmoMessageIPAReadDelegate >> readOneMessage: aSocket [
 ]
 
 { #category : #'as yet unclassified' }
+OsmoMessageIPAReadDelegate >> token [
+	^token
+
+]
+
+{ #category : #'as yet unclassified' }
 OsmoMessageIPAReadDelegate >> token: aToken [
 	token := aToken
 
