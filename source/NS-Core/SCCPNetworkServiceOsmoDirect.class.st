@@ -11,6 +11,14 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
+SCCPNetworkServiceOsmoDirect class >> materializeFrom: aDictionary [
+	^self new
+		hostname: (aDictionary at: 'hostname') port: (aDictionary at: 'port');
+		token: (aDictionary at: 'token');
+		yourself
+]
+
+{ #category : #'as yet unclassified' }
 SCCPNetworkServiceOsmoDirect >> doIpaRecv: aMsg [
 	ModuleBoundary runSynchronous: [
 		self logManager context: 'payload' value: aMsg.
@@ -31,6 +39,16 @@ SCCPNetworkServiceOsmoDirect >> initialize [
 	delegate := OsmoMessageIPAReadDelegate new.
 	delegate onConnect: [:dispatcher | self registerOn: dispatcher].
 	conn readDelegate: delegate.
+]
+
+{ #category : #'external-configuration' }
+SCCPNetworkServiceOsmoDirect >> toExternalDictionary [
+	^{
+		'class' -> self class name asString.
+		'hostname' -> conn hostname.
+		'port' -> conn port.
+		'token' -> delegate token.
+	} asDictionary
 ]
 
 { #category : #'as yet unclassified' }
