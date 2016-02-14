@@ -23,6 +23,11 @@ SCCPNetworkService class >> layer [
 ]
 
 { #category : #'as yet unclassified' }
+SCCPNetworkService >> connectionName [
+	^ connectionName
+]
+
+{ #category : #'as yet unclassified' }
 SCCPNetworkService >> connectionName: aName [ 
 	connectionName := aName
 ]

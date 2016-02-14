@@ -13,6 +13,7 @@ Class {
 { #category : #'as yet unclassified' }
 SCCPNetworkServiceOsmoDirect class >> materializeFrom: aDictionary [
 	^self new
+		connectionName: (aDictionary at: 'connectionName');
 		hostname: (aDictionary at: 'hostname') port: (aDictionary at: 'port');
 		token: (aDictionary at: 'token');
 		yourself
