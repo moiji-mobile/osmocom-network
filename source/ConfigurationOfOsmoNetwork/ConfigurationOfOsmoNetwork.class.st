@@ -237,6 +237,65 @@ ConfigurationOfOsmoNetwork >> baseline03: spec [
 			project: 'OsmoCore' with: [
 				spec
 					className: #ConfigurationOfOsmoCore;
+					versionString: #'stable';
+					repository: 'http://smalltalkhub.com/mc/osmocom/Core/main/' ];
+			project: 'OsmoLogging' with: [
+				spec
+					className: #ConfigurationOfOsmoLogging;
+					versionString: #'stable';
+					repository: 'http://smalltalkhub.com/mc/osmocom/Logging/main/' ];
+			project: 'PetitParser' with: [
+				spec
+					className: #ConfigurationOfPetitParser;
+					versionString: #'stable';
+					loads: #('Core' 'Tests' );
+					repository: 'http://smalltalkhub.com/mc/Moose/PetitParser/main/' ].
+		spec 
+			package: #OsmoNetworkPrimitives with: [
+				spec requires: #('OsmoLogging' ). ];
+			package: #SCCP with: [
+				spec requires: #('OsmoLogging' ). ];
+			package: #OpenBSCControl with: [
+				spec requires: #('OsmoLogging' 'PetitParser' ). ];
+			package: #OsmoTLV;
+			package: #ISUP with: [
+				spec requires: #(#OsmoNetworkPrimitives #OsmoTLV ). ];
+			package: #M2UA with: [
+				spec requires: #('OsmoCore' 'OsmoLogging' #OsmoNetworkPrimitives ). ];
+			package: #M3UA;
+			package: #IPA with: [
+				spec requires: #('OsmoLogging' #OsmoNetworkPrimitives ). ];
+			package: #OsmoSocket with: [
+				spec requires: #(#IPA 'OsmoCore' ). ];
+			package: #SCTP with: [
+				spec requires: #(#OsmoSocket ). ];
+			package: #'MTP3-Codec' with: [
+				spec requires: #('OsmoCore' 'OsmoLogging' ). ];
+			package: #'MTP3-LinkHandling' with: [
+				spec requires: #('OsmoCore' 'OsmoLogging' #'MTP3-Codec' ). ];
+			package: #'NS-Core' with: [
+				spec requires: #(#SCCP #IPA #OsmoSocket #'MTP3-LinkHandling' ). ].
+		spec 
+			group: 'default' with: #(#OsmoNetworkPrimitives #OsmoSocket #OsmoTLV #SCCP #'NS-Core' #SCTP #IPA );
+			group: 'isup' with: #('default' #ISUP );
+			group: 'm2ua' with: #('default' #M2UA );
+			group: 'm3ua' with: #('default' #M3UA );
+			group: 'control' with: #('default' #OpenBSCControl );
+			group: 'all' with: #('default' 'isup' 'm2ua' 'm3ua' 'control' ). ].
+
+]
+
+{ #category : #baselines }
+ConfigurationOfOsmoNetwork >> baseline04: spec [
+	<version: '0.4-baseline'>
+
+	spec for: #'common' do: [
+		spec blessing: #'baseline'.
+		spec repository: 'http://smalltalkhub.com/mc/osmocom/Network/main/'.
+		spec 
+			project: 'OsmoCore' with: [
+				spec
+					className: #ConfigurationOfOsmoCore;
 					versionString: #'bleedingEdge';
 					repository: 'http://smalltalkhub.com/mc/osmocom/Core/main/' ];
 			project: 'OsmoLogging' with: [
@@ -297,7 +356,7 @@ ConfigurationOfOsmoNetwork >> customProjectAttributes [
 ConfigurationOfOsmoNetwork >> development: spec [
 	<symbolicVersion: #'development'>
 
-	spec for: #'common' version: '0.3-baseline'.
+	spec for: #'common' version: '0.4-baseline'.
 
 ]
 
@@ -318,7 +377,7 @@ ConfigurationOfOsmoNetwork >> project [
 ConfigurationOfOsmoNetwork >> stable: spec [
 	<symbolicVersion: #'stable'>
 
-	spec for: #'common' version: '2'.
+	spec for: #'common' version: '3'.
 
 ]
 
@@ -379,5 +438,35 @@ ConfigurationOfOsmoNetwork >> version2: spec [
 			package: #'MTP3-Codec' with: 'MTP3-Codec-HolgerHansPeterFreyther.1';
 			package: #'MTP3-LinkHandling' with: 'MTP3-LinkHandling-HolgerHansPeterFreyther.16';
 			package: #'NS-Core' with: 'NS-Core-HolgerHansPeterFreyther.18'. ].
+
+]
+
+{ #category : #versions }
+ConfigurationOfOsmoNetwork >> version3: spec [
+	<version: '3' imports: #('0.3-baseline' )>
+
+	spec for: #'common' do: [
+		spec blessing: #'stable'.
+		spec description: 'version 3'.
+		spec author: 'HolgerHansPeterFreyther'.
+		spec timestamp: '2/14/2016 19:35'.
+		spec 
+			project: 'OsmoCore' with: '1';
+			project: 'OsmoLogging' with: '1';
+			project: 'PetitParser' with: '1.14'.
+		spec 
+			package: #OsmoNetworkPrimitives with: 'OsmoNetworkPrimitives-HolgerHansPeterFreyther.7';
+			package: #SCCP with: 'SCCP-HolgerHansPeterFreyther.3';
+			package: #OpenBSCControl with: 'OpenBSCControl-HolgerHansPeterFreyther.1';
+			package: #OsmoTLV with: 'OsmoTLV-HolgerHansPeterFreyther.3';
+			package: #ISUP with: 'ISUP-HolgerHansPeterFreyther.1';
+			package: #M2UA with: 'M2UA-HolgerHansPeterFreyther.1';
+			package: #M3UA with: 'M3UA-HolgerHansPeterFreyther.1';
+			package: #IPA with: 'IPA-HolgerHansPeterFreyther.1';
+			package: #OsmoSocket with: 'OsmoSocket-HolgerHansPeterFreyther.20';
+			package: #SCTP with: 'SCTP-HolgerHansPeterFreyther.1';
+			package: #'MTP3-Codec' with: 'MTP3-Codec-HolgerHansPeterFreyther.1';
+			package: #'MTP3-LinkHandling' with: 'MTP3-LinkHandling-HolgerHansPeterFreyther.16';
+			package: #'NS-Core' with: 'NS-Core-HolgerHansPeterFreyther.20'. ].
 
 ]
