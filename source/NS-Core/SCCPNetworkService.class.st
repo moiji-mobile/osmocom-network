@@ -11,7 +11,8 @@ Class {
 	#instVars : [
 		'on_data',
 		'defaultRoute',
-		'logger'
+		'logger',
+		'connectionName'
 	],
 	#category : #'NS-Core'
 }
@@ -19,6 +20,11 @@ Class {
 { #category : #'as yet unclassified' }
 SCCPNetworkService class >> layer [
 	^ self
+]
+
+{ #category : #'as yet unclassified' }
+SCCPNetworkService >> connectionName: aName [ 
+	connectionName := aName
 ]
 
 { #category : #routing }
