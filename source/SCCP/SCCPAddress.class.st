@@ -90,6 +90,12 @@ SCCPAddress class >> ssnBroadISDN [
 ]
 
 { #category : #constants }
+SCCPAddress class >> ssnCAP [
+	^146
+
+]
+
+{ #category : #constants }
 SCCPAddress class >> ssnEIC [
 	^9
 
