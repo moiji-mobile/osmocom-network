@@ -482,7 +482,7 @@ ConfigurationOfOsmoNetwork >> version4: spec [
 		spec timestamp: '10/20/2016 23:31'.
 		spec 
 			project: 'OsmoCore' with: '2';
-			project: 'OsmoLogging' with: '2';
+			project: 'OsmoLogging' with: '3';
 			project: 'PetitParser' with: '1.14'.
 		spec 
 			package: #OsmoNetworkPrimitives with: 'OsmoNetworkPrimitives-HolgerHansPeterFreyther.7';
