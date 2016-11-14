@@ -353,7 +353,7 @@ ISUPConstants class >> msgUCIC [
 { #category : #constants }
 ISUPConstants class >> msgUPA [
 	"User Part available"
-	^2r00110100
+	^2r00110101
 
 ]
 
