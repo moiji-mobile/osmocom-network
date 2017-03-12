@@ -22,7 +22,7 @@ SCCPNetworkServiceOsmoDirect class >> materializeFrom: aDictionary [
 { #category : #'as yet unclassified' }
 SCCPNetworkServiceOsmoDirect >> doIpaRecv: aMsg [
 	ModuleBoundary runSynchronous: [
-		self logManager context: 'payload' value: aMsg.
+		LogDataPayload value: aMsg.
 		self doReceive: aMsg
 	]
 ]
