@@ -377,7 +377,7 @@ ConfigurationOfOsmoNetwork >> project [
 ConfigurationOfOsmoNetwork >> stable: spec [
 	<symbolicVersion: #'stable'>
 
-	spec for: #'common' version: '4'.
+	spec for: #'common' version: '5'.
 
 ]
 
@@ -498,5 +498,35 @@ ConfigurationOfOsmoNetwork >> version4: spec [
 			package: #'MTP3-Codec' with: 'MTP3-Codec-HolgerHansPeterFreyther.1';
 			package: #'MTP3-LinkHandling' with: 'MTP3-LinkHandling-HolgerHansPeterFreyther.16';
 			package: #'NS-Core' with: 'NS-Core-HolgerHansPeterFreyther.20'. ].
+
+]
+
+{ #category : #versions }
+ConfigurationOfOsmoNetwork >> version5: spec [
+	<version: '5' imports: #('0.3-baseline' )>
+
+	spec for: #'common' do: [
+		spec blessing: #'stable'.
+		spec description: 'version 5'.
+		spec author: 'HolgerHansPeterFreyther'.
+		spec timestamp: '03/12/2017 12:21'.
+		spec 
+			project: 'OsmoCore' with: '3';
+			project: 'OsmoLogging' with: '4';
+			project: 'PetitParser' with: '1.14'.
+		spec 
+			package: #OsmoNetworkPrimitives with: 'OsmoNetworkPrimitives-HolgerHansPeterFreyther.7';
+			package: #SCCP with: 'SCCP-HolgerHansPeterFreyther.4';
+			package: #OpenBSCControl with: 'OpenBSCControl-HolgerHansPeterFreyther.1';
+			package: #OsmoTLV with: 'OsmoTLV-HolgerHansPeterFreyther.3';
+			package: #ISUP with: 'ISUP-HolgerHansPeterFreyther.1';
+			package: #M2UA with: 'M2UA-HolgerHansPeterFreyther.1';
+			package: #M3UA with: 'M3UA-HolgerHansPeterFreyther.1';
+			package: #IPA with: 'IPA-HolgerHansPeterFreyther.1';
+			package: #OsmoSocket with: 'OsmoSocket-HolgerHansPeterFreyther.20';
+			package: #SCTP with: 'SCTP-HolgerHansPeterFreyther.1';
+			package: #'MTP3-Codec' with: 'MTP3-Codec-HolgerHansPeterFreyther.1';
+			package: #'MTP3-LinkHandling' with: 'MTP3-LinkHandling-HolgerHansPeterFreyther.16';
+			package: #'NS-Core' with: 'NS-Core-HolgerHansPeterFreyther.21'. ].
 
 ]
