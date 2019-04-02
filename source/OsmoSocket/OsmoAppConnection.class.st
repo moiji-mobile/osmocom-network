@@ -44,11 +44,13 @@ OsmoAppConnection >> connect [
 
 { #category : #'pharo-porting' }
 OsmoAppConnection >> createConnection: aHostname port: aPort [
-	^(SocketStream openConnectionToHostNamed: aHostname port: aPort)
+	| streamSocket |
+	streamSocket := (SocketStream openConnectionToHostNamed: aHostname port: aPort)
 	    binary;
 	    noTimeout;
-	    yourself
-
+	    yourself.
+	streamSocket socket setOption: 'TCP_NODELAY' value: 1.
+	^streamSocket
 ]
 
 { #category : #dispatch }

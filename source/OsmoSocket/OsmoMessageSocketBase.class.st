@@ -96,6 +96,7 @@ OsmoMessageSocketBase >> socket: aSocket [
 OsmoMessageSocketBase >> startHandling [
 
 	socket socket setOption: 'SO_KEEPALIVE' value: 1.
+	socket socket setOption: 'TCP_NODELAY' value: 1.
 
 	rx_proc := [
 		Processor activeProcess 
