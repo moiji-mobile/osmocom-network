@@ -47,7 +47,7 @@ BERTEncoderTest >> testEncodeByteList [
 { #category : #'as yet unclassified' }
 BERTEncoderTest >> testEncodeDictionary [
 	self encode: Dictionary new equals: #[131 104 3 100 0 4 98 101 114 116 100 0 4 100 105 99 116 104 2 100 0 4 98 101 114 116 100 0 3 110 105 108].
-	self encode: (Dictionary new at: 'name' put: 'Tom' asByteArray; at: 'age' put: 30; yourself) equals: #[131 104 3 100 0 4 98 101 114 116 100 0 4 100 105 99 116 108 0 0 0 2 104 2 107 0 3 97 103 101 97 30 104 2 107 0 4 110 97 109 101 109 0 0 0 3 84 111 109 106].
+	self encode: (Dictionary new at: 'name' put: 'Tom' asByteArray; at: 'age' put: 30; yourself) equals: #[131 104 3 100 0 4 98 101 114 116 100 0 4 100 105 99 116 108 0 0 0 2 104 2 107 0 4 110 97 109 101 109 0 0 0 3 84 111 109 104 2 107 0 3 97 103 101 97 30 106].
 ]
 
 { #category : #'as yet unclassified' }
