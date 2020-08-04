@@ -86,7 +86,7 @@ CtrlLocationTrap >> locTimeStamp [
 
 { #category : #private }
 CtrlLocationTrap >> location: aLoc [
-	location := aLoc subStrings: ','.
+	location := aLoc substrings: ','.
 	location size = 8 ifFalse: [^self error: 'Failed to parse location']
 
 ]

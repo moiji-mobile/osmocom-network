@@ -44,11 +44,11 @@ CtrlCallStatTrap >> extractMessage [
 	dict at: 'nat_id' put: (var at: 2) first.
 	dict at: 'bsc_id' put: (var at: 4) first.
 	data := msg at: 4.
-	data := data subStrings: ','.
+	data := data substrings: ','.
 	data do: 
 		[:each | 
 		| split |
-		split := each subStrings: '='.
+		split := each substrings: '='.
 		dict at: split first put: split second]
 
 ]
