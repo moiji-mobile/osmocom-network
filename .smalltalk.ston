@@ -1,0 +1,11 @@
+SmalltalkCISpec {
+  #loading : [
+      SCIMetacelloLoadSpec {
+          #baseline : 'OsmoNetwork',
+          #directory : 'source',
+          #platforms : [ #pharo ],
+          #load: [ 'all' ]
+      }
+  ]
+}
+
