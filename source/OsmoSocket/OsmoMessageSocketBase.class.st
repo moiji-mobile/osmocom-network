@@ -24,16 +24,16 @@ OsmoMessageSocketBase >> dispatchOne [
 
 { #category : #'private-read' }
 OsmoMessageSocketBase >> driveDispatch [
-	[[
-		self dispatchOne
-	] on: ConnectionClosed do: [:e |
-		self logError: 'Connection closed on read' area: #osmo.
-		errorDelegate onReadError: self
-	]] on: UnhandledError do: [:e |
-		e logException: 'Driving failed' area: #osmo.
-		errorDelegate onReadError: self].
-
-
+	[ [ self dispatchOne ]
+		on: ConnectionClosed
+		do: [ :e | 
+			self logError: 'Connection closed on read' area: #osmo.
+			errorDelegate onReadError: self ] ]
+		on: UnhandledError
+		do: [ :e | 
+			ModuleBoundary handleError: e.
+			e logException: 'Driving failed' area: #osmo.
+			errorDelegate onReadError: self ]
 ]
 
 { #category : #configuration }
