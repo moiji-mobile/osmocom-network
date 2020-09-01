@@ -131,3 +131,24 @@ OsmoMessageSocketBase >> terminate [
 	rx_proc ifNotNil: [rx_proc terminate].
 
 ]
+
+{ #category : #reading }
+OsmoMessageSocketBase >> uint24 [
+	| n |
+	n := self next.
+	n := (n bitShift: 8) + self next.
+	n := (n bitShift: 8) + self next.
+	^ n
+]
+
+{ #category : #reading }
+OsmoMessageSocketBase >> uint32 [
+	"Answer the next unsigned, 32-bit integer from this (binary) stream."
+
+	| n |
+	n := self next.
+	n := (n bitShift: 8) + self next.
+	n := (n bitShift: 8) + self next.
+	n := (n bitShift: 8) + self next.
+	^ n
+]
