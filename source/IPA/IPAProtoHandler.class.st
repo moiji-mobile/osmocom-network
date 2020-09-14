@@ -42,7 +42,9 @@ IPAProtoHandler class >> initializeHandlers [
 
 { #category : #private }
 IPAProtoHandler >> handleIdAck: aMsg [
-	self logDebug: 'ID ACK' area: #ipa
+	self logDebug: 'ID ACK' area: #ipa.
+	muxer nextPut: (ByteArray with: IPAConstants msgIdAck)
+	    with: IPAConstants protocolIPA
 
 ]
 
